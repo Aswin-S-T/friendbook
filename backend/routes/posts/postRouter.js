@@ -27,12 +27,15 @@ postRouter.get("/get-all-post", async (req, res) => {
 		for (let i = 0; i < post.length; i++) {
 			let e = post[i];
 			const user = await User.findOne({ _id: e.userId });
-			e = e._doc;
-			delete e.createdAt;
-			delete e.updatedAt;
-			delete e.__v;
-			postObj = { ...e, username: user["username"] };
-			postArr.push(postObj);
+
+			if (user) {
+				e = e._doc;
+				delete e.createdAt;
+				delete e.updatedAt;
+				delete e.__v;
+				postObj = { ...e, username: user["username"] };
+				postArr.push(postObj);
+			}
 		}
 	}
 
@@ -91,6 +94,34 @@ postRouter.post("/add-my-post", veryfyJWT, async (req, res) => {
 		response.success = false;
 		response.data = null;
 	}
+	res.send(response);
+});
+
+postRouter.get("/get-my-post", veryfyJWT, async (req, res) => {
+	const response = {};
+	const post = await Post.find({ userId: req.user.id }).sort({
+		postedTime: -1,
+	});
+	let postDetais;
+	let postObj = {};
+	let postArr = [];
+	response.code = 200;
+	response.status = "success";
+	if (post) {
+		for (let i = 0; i < post.length; i++) {
+			let e = post[i];
+			const user = await User.findOne({ _id: e.userId });
+			e = e._doc;
+			delete e.createdAt;
+			delete e.updatedAt;
+			delete e.__v;
+			postObj = { ...e };
+			response.user = user;
+			postArr.push(postObj);
+		}
+	}
+
+	response.data = postArr;
 	res.send(response);
 });
 

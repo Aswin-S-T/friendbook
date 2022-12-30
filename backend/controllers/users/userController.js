@@ -60,6 +60,7 @@ module.exports = {
 									response.code = 200;
 									response.message = "success";
 									response.data = "Bearer " + token;
+									response.userId = user._id;
 									resolve(response);
 								}
 							}

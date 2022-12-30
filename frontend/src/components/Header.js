@@ -1,6 +1,6 @@
 import React from "react";
 
-function Header() {
+function Header({ userId }) {
 	return (
 		<div>
 			<nav className="m-2">
@@ -21,19 +21,19 @@ function Header() {
 						</form>
 					</div>
 					<div className="col-md-4">
-						<ul class="nav">
-							<li class="nav-item">
-								<a class="nav-link active text-white" href="#">
+						<ul className="nav">
+							<li className="nav-item">
+								<a className="nav-link active text-white" href="#">
 									Chat
 								</a>
 							</li>
-							<li class="nav-item">
-								<a class="nav-link text-white" href="#">
+							<li className="nav-item">
+								<a className="nav-link text-white" href="#">
 									Notifications
 								</a>
 							</li>
-							<li class="nav-item">
-								<a class="nav-link text-white" href="/profile">
+							<li className="nav-item">
+								<a className="nav-link text-white" href={`/profile/${userId}`}>
 									Profile
 								</a>
 							</li>

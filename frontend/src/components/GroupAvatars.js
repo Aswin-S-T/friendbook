@@ -11,7 +11,6 @@ export default function GroupAvatars() {
 	generator.generateRandomAvatar();
 	React.useEffect(() => {
 		setAvatars(generator.generateRandomAvatar());
-		console.log("AV-------", generator.generateRandomAvatar());
 	}, []);
 
 	return (
