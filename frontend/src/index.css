@@ -2,6 +2,9 @@
   margin: 0;
   padding: 0;
 }
+body{
+  background-color: whitesmoke;
+}
 header{
   background-color: #252228;
   position: fixed;
@@ -21,8 +24,8 @@ header{
   height: 650px;
 }
 .postBx{
-  background-color: whitesmoke;
- 
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .dropleft{
  float: right;
@@ -41,7 +44,7 @@ div.post_actions li{
   display: flex;
   justify-content: space-around;
 }
-form{
+.searchBx{
   display: flex;
   justify-content: space-between;
 }
@@ -53,6 +56,44 @@ form{
   position: relative;
 }
 .login_screen{
-  top: 55px;
+  top: 65px;
+  position: relative;
+}
+.signin_screen,
+.profile_screen{
+  top: 70px;
+  position: relative;
+}
+.liked_response{
+  display: flex;
+}
+p{
+  color: grey;
+
+}
+.profileHead{
+  background-color: white;
+}
+.profileHead img.bg{
+  height: 300px;
+}
+.profileImage img{
+  height: 120px;
+  width: 120px;
+  border-radius: 50px;
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  top: -100px;
+  position: relative;
+}
+.profileHead h2{
+  font-family: sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  top: 8px;
   position: relative;
 }

@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 module.exports.veryfyJWT = (req, res, next) => {
 	const token =
 		req.headers["x-access-token"]?.split(" ")[1] ||
-		req.headers["authorization"];
+		req.headers["authorization"]?.split(" ")[1];
 
 	if (token) {
 		jwt.verify(

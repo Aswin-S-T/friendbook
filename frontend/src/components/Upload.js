@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { BASE_URL } from "../constants/appliationConstants";
+import { useSelector } from "react-redux";
 
 const Upload = () => {
 	const [fileInputState, setFileInputState] = useState("");
 	const [previewSource, setPreviewSource] = useState("");
 	const [selectedFile, setSelectedFile] = useState();
+
+	const userSignin = useSelector((state) => state.userSignin);
+	const { userInfo } = userSignin;
+
+	console.log("user info=========", userInfo.data);
 
 	const handleFileInputChange = (e) => {
 		const file = e.target.files[0];
@@ -28,10 +34,13 @@ const Upload = () => {
 
 	const uploadImage = async (base64EncodedImage) => {
 		try {
-			await fetch(`http://localhost:5000/api/v1/p/add-post`, {
+			await fetch(`${BASE_URL}/api/v1/p/add-my-post`, {
 				method: "POST",
 				body: JSON.stringify({ data: base64EncodedImage }),
-				headers: { "Content-Type": "application/json" },
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: userInfo.data,
+				},
 			});
 			setFileInputState("");
 			setPreviewSource("");
