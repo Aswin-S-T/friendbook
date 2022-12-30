@@ -1,5 +1,7 @@
 const express = require("express");
 const userRouter = require("./routes/users/userRouter");
+const postRouter = require("./routes/posts/postRouter");
+const cors = require("cors");
 const app = express();
 
 const port = process.env.PORT || 5000;
@@ -11,9 +13,11 @@ db.connect();
 // Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 // Routes configurations
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/p", postRouter);
 
 app.get("/", (req, res) => {
 	res.send("Nodeapp works....");

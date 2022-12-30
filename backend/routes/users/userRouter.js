@@ -16,9 +16,14 @@ userRouter.post("/register", async (req, res) => {
 
 userRouter.post("/login", (req, res) => {
 	let loginData = req.body;
-	userController.login(loginData).then((response) => {
-		res.send(response);
-	});
+	const { email, password } = loginData;
+	if (email == null || password == null) {
+		res.send("Email and password required");
+	} else {
+		userController.login(loginData).then((response) => {
+			res.send(response);
+		});
+	}
 });
 
 userRouter.get("/getUsername", veryfyJWT, (req, res) => {
